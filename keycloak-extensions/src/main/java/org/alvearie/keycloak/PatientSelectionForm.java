@@ -56,7 +56,8 @@ import ca.uhn.fhir.rest.client.api.ServerValidationModeEnum;
 /**
  * Present a patient context picker when the client requests the launch/patient scope and the
  * user record has multiple resourceId attributes. The selection is stored in a UserSessionNote
- * with name "patient_id".
+ * with name "patient" since Firely Server expects a "patient" claim as described in
+ * https://docs.fire.ly/projects/Firely-Server/en/latest/security/accesscontrol.html#tokens
  */
 public class PatientSelectionForm implements Authenticator {
 
@@ -199,7 +200,8 @@ public class PatientSelectionForm implements Authenticator {
 		accessToken.setScope(SMART_SCOPE_PATIENT_READ);
 
 		JsonWebToken jwt = accessToken.audience(requestedAudience);
-		jwt.setOtherClaims("patient_id", resourceIds);
+		// convert resource id array to a string where resource ids are separated by space
+		jwt.setOtherClaims("patient", String.join(" ",resourceIds));
 		return session.tokens().encode(jwt);
 	}
 
@@ -230,7 +232,7 @@ public class PatientSelectionForm implements Authenticator {
 
 	private void succeed(AuthenticationFlowContext context, String patient) {
 		// Add selected information to authentication session
-		context.getAuthenticationSession().setUserSessionNote("patient_id", patient);
+		context.getAuthenticationSession().setUserSessionNote("patient", patient);
 		context.success();
 	}
 

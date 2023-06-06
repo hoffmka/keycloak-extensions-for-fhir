@@ -10,7 +10,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <keycloak.version>18.0.2</keycloak.version>
+    <keycloak.version>21.1.1</keycloak.version>
     <!-- 1.10.0 = 17.0.0-legacy  2.2.2=18.0.0 -->
     <testcontainers-keycloak.version>2.2.2</testcontainers-keycloak.version>
     <maven.compiler.target>11</maven.compiler.target>
