@@ -14,9 +14,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status.Family;
-
+import jakarta.ws.rs.core.Response;
 import org.alvearie.keycloak.config.util.KeycloakConfig;
 import org.alvearie.keycloak.config.util.PropertyGroup;
 import org.alvearie.keycloak.config.util.PropertyGroup.PropertyEntry;
@@ -599,7 +597,7 @@ public class KeycloakConfigurator {
 
 			Response response = authMgmt.createFlow(authenticationFlow);
 
-			if (response.getStatusInfo().getFamily() == Family.SUCCESSFUL) {
+			if (response.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL) {
 				String path = response.getLocation().getPath();
 				String id = path.substring(path.lastIndexOf("/") + 1);
 				System.out.println("Created flow with id '" + id + "'");
@@ -744,7 +742,7 @@ public class KeycloakConfigurator {
 			authenticatorConfig.setAlias(configAlias);
 			Response response = authMgmt.newExecutionConfig(execution.getId(), authenticatorConfig);
 
-			if (response.getStatusInfo().getFamily() == Family.SUCCESSFUL) {
+			if (response.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL) {
 				String path = response.getLocation().getPath();
 				String id = path.substring(path.lastIndexOf("/") + 1);
 				System.out.println("Created authenticator config with id '" + id + "'");

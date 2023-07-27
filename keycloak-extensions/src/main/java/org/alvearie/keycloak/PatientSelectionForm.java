@@ -15,9 +15,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
-
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.Response;
 import org.alvearie.keycloak.freemarker.PatientStruct;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
@@ -157,7 +156,7 @@ public class PatientSelectionForm implements Authenticator {
 
 	private List<String> getResourceIdsForUser(AuthenticationFlowContext context) {
 		return context.getUser().getAttributeStream(ATTRIBUTE_RESOURCE_ID)
-				.flatMap(a -> Arrays.stream(a.split(" ")))
+				.flatMap(a -> Arrays.stream(a.split(",")))
 				.map(String::trim)
 				.filter(s -> !s.isEmpty())
 				.collect(Collectors.toList());
@@ -200,8 +199,8 @@ public class PatientSelectionForm implements Authenticator {
 		accessToken.setScope(SMART_SCOPE_PATIENT_READ);
 
 		JsonWebToken jwt = accessToken.audience(requestedAudience);
-		// convert resource id array to a string where resource ids are separated by space
-		jwt.setOtherClaims("patient", String.join(" ",resourceIds));
+		// convert resource id array to a string where resource ids are separated by comma
+		jwt.setOtherClaims("patient", String.join(",",resourceIds));
 		return session.tokens().encode(jwt);
 	}
 
