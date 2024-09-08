@@ -31,7 +31,7 @@ ENV KEYCLOAK_BASE_URL=http://host.docker.internal:8080 \
     KEYCLOAK_REALM=test \
     KEYCLOAK_USER=admin \
     KEYCLOAK_PASSWORD=admin \
-    FHIR_BASE_URL=https://localhost:9443/fhir-server/api/v4
+    FHIR_BASE_URL=http://localhost:9080/fhir-server/api/v4
 
 USER 1001
 
