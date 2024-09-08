@@ -17,7 +17,7 @@ RUN mvn -B clean package -f keycloak-config -DskipTests
 
 
 # Package stage
-FROM eclipse-temurin:11
+FROM eclipse-temurin:17
 
 RUN groupadd -r keycloak-client -g 1001 && \
     useradd -u 1001 -r -g 1001 -m -d /home/keycloak-client -s /sbin/nologin keycloak-client
