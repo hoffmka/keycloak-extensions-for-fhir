@@ -599,11 +599,11 @@
 						"publicClient": true,
 						"bearerOnly": false,
 						"enableDirectAccess": false,
-						"rootURL": "http://localhost:4567/inferno",
-						"redirectURIs": ["http://localhost:4567/inferno/*",
-						"http://localhost:4567/inferno2/*"],
-						"adminURL": "http://localhost:4567/inferno",
-						"webOrigins": ["http://localhost:4567"],
+						"rootURL": "http://localhost:8050",
+						"redirectURIs": ["http://localhost:8050/*",
+						"http://localhost:8050/redirect"],
+						"adminURL": "http://localhost:8050/redirect",
+						"webOrigins": ["http://localhost:8050"],
 						"defaultClientScopes": ["launch/patient"],
 						"optionalClientScopes": [
 							"fhirUser",
@@ -697,7 +697,7 @@
 						"password": "change-password",
 						"passwordTemporary": false,
 						"attributes": {
-							"resourceId": ["Patient1"]
+							"resourceId": ["191360b5725-743b643a-ab9e-4102-9964-b2d4b9f5d44d"]
 						},
 						"groups": ["fhirUser"]
 					}
